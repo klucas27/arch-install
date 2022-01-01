@@ -26,7 +26,7 @@ class Install:
             "Mudando Idioma": 'echo "pt_BR.UTF-8 UTF-8" > /etc/locale.gen',
             "Mudando Codificação": "export LANG=pt_BR.UTF-8",
             "Verificando tipo de Inicialização": "ls /sys/firmware/efi/efivars",
-            "Testando Rede": "ping archlinux.org",
+            "Testando Rede": "speedtest-cli",
             "Configurando Relógio": "timedatectl set-ntp true",
         }
 
