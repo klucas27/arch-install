@@ -1,19 +1,16 @@
 import os
-import sys
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
-
-
-class App(QMainWindow):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+import time
 
 
 def full_run():
-    print("123")
+    os.system("clear")
+    print("\n", "*" * 50, "\n\n\t\t\tFull Install Started!\n\n", "*" * 50)
+    time.sleep(3)
+    file = open("info.txt", "w")
+    time.sleep(1)
+    file.close()
+
 
 
 if __name__ == '__main__':
-    qt = QApplication(sys.argv)
-    app = App()
-    app.show()
-    qt.exec_()
+    full_run()
