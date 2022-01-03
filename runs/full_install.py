@@ -14,6 +14,9 @@ def full_run():
 
     execs.pre_install()     # Exec Pré Install
 
+    execs.get_disks()       # Get Disks
+
+
 
 if __name__ == '__main__':
     full_run()

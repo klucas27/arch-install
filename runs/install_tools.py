@@ -17,6 +17,7 @@ class Install:
 
     @staticmethod
     def get_disks():
+        print("Geting Disks...")
         fdisk = get_output("fdisk -l")
         for pas in fdisk.splitlines():
             if pas.startswith("Disk /dev/s"):
@@ -25,8 +26,22 @@ class Install:
 
         file.close()
 
-    def partition_bios(self):
-        ...
+    @staticmethod
+    def partition_bios():
+        disks = {}
+        with open("info.txt", "r") as file:
+            cont = 1
+            for pas in file.readline():
+                if pas.startswith("Disk /dev/s"):
+                    disks[cont] = [pas, pas[5:13]]
+                cont += 1
+
+        file.close()
+
+        for key, vlr in disks.items():
+            print(f"[{key}] ---> {vlr[1]}")
+
+        print(disks)
 
     @staticmethod
     def pre_install():
@@ -85,6 +100,9 @@ class Install:
 
 if __name__ == "__main__":
     test = Install()
+    test.pre_install()
     test.get_disks()
+    test.partition_bios()
+
 
 
