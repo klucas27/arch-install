@@ -39,11 +39,11 @@ class Install:
                         saida = get_output(command)
                         logfile.writelines(f"\n{saida}")
                         if saida.count("cannot access"):
-                            file.write("inici: BIOS")
+                            file.write("\ninici: BIOS")
                             print("\t\tInicialização do tipo: BIOS")
                             time.sleep(2)
                         else:
-                            file.write("inici: UEFI")
+                            file.write("\ninici: UEFI")
                             print("\t\tInicialização do tipo: UEFI")
                             time.sleep(2)
                         continue
@@ -54,10 +54,10 @@ class Install:
                         logfile.writelines(f"\n{saida}")
                         for ver in saida:
                             if ver.startswith("Download:"):
-                                file.write(ver)
+                                file.write(f"\n{ver}")
                                 print("\t\t", ver)
                             if ver.startswith("Upload:"):
-                                file.write(ver)
+                                file.write(f"\n{ver}")
                                 print("\t\t", ver)
                                 time.sleep(2)
                         continue
