@@ -33,7 +33,10 @@ class Install:
             cont = 1
             for pas in file.readline():
                 if pas.startswith("Disk /dev/s"):
-                    disks[cont] = [pas, pas[5:13]]
+                    disks[cont] = []
+                    disks.get(cont).append(pas)
+                    disks.get(cont).append(pas[5:13])
+
                 cont += 1
 
         file.close()
