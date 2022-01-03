@@ -12,11 +12,25 @@ def get_output(cmd):
 
 
 class Install:
-    def __init__(self):
+    def __init__(self, *args):
         pass
 
     @staticmethod
+    def get_disks():
+        fdisk = get_output("fdisk -l")
+        for pas in fdisk.splitlines():
+            if pas.startswith("Disk /dev/s"):
+                with open("info.txt", "a+") as file:
+                    file.write(f"\n{pas}")
+
+        file.close()
+
+    def partition_bios(self):
+        ...
+
+    @staticmethod
     def pre_install():
+        run_os("clear")
 
         list_execs = {
             "Configurando MirrorList": "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
@@ -71,6 +85,6 @@ class Install:
 
 if __name__ == "__main__":
     test = Install()
-    test.pre_install()
+    test.get_disks()
 
 
