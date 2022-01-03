@@ -31,14 +31,15 @@ class Install:
         disks = {}
         with open("info.txt", "r") as file:
             cont = 1
-            for pas in file.readline():
+            for pas in file.readlines():
                 print(pas)
-                if pas.startswith("Disk /dev/s"):
+                if pas.startswith("Disk"):
                     disks[cont] = []
                     disks.get(cont).append(pas)
+                    disks.get(cont).append(pas.split(sep=",")[0])
+                    disks.get(cont).append(pas.split(sep=",")[0].split(sep=":")[1])
                     disks.get(cont).append(pas[5:13])
-
-                cont += 1
+                    cont += 1
 
         file.close()
 
@@ -50,7 +51,8 @@ class Install:
     @staticmethod
     def pre_install():
         run_os("clear")
-
+        get_output("rm -rf log.txt")
+        get_output("rm -rf info.txt")
         list_execs = {
             "Configurando MirrorList": "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
             "Verificando Python": "pacman -Sy python3 --noconfirm",
