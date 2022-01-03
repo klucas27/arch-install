@@ -65,6 +65,9 @@ class Install:
                 comd = get_output(command)
                 logfile.writelines(f"\n{comd}")
                         
+        logfile.close()
+        file.close()
+
 
 if __name__ == "__main__":
     test = Install()
