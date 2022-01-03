@@ -50,7 +50,7 @@ class Install:
 
                 if info == "Testando Rede":
                     with open("info.txt", "a+") as file:
-                        saida = get_output(command).split()
+                        saida = get_output(command).splitlines()
                         logfile.writelines(f"\n{saida}")
                         for ver in saida:
                             if ver.startswith("Download:"):
