@@ -3,6 +3,7 @@ import os
 import time
 import re
 
+
 def run_os(cmd):
     os.system(cmd)
 
@@ -14,7 +15,6 @@ def get_output(cmd):
 class Install:
     def __init__(self, *args):
         pass
-
 
     @staticmethod
     def get_disks():
@@ -31,7 +31,7 @@ class Install:
     def partition_bios():
         r = re.compile(r"\D", re.ASCII)
         disks = {}
-        with open("info.txt", "r") as file:
+        with open("info.txt", "r+") as file:
             cont = 1
             for pas in file.readlines():
                 if pas.startswith("Disk"):
@@ -42,15 +42,17 @@ class Install:
                     disks.get(cont).append(pas[5:13])
                     cont += 1
 
+            for key, vlr in disks.items():
+                print(f"\n[{key}] ---> {vlr[1]}")
+
+            print()
+            disk_select = disks.get(int(input("Select your disk: ")))
+            print()
+            
+            file.writelines(f"Disk: {disk_select[3]}")
+            file.writelines(f"Disk size: {disk_select[2]}")
+
         file.close()
-
-        for key, vlr in disks.items():
-            print(f"[{key}] ---> {vlr[1]}\n")
-
-        print()
-        disk_select = disks.get(int(input("Select your disk: ")))
-        print()
-        print(disk_select)
 
     @staticmethod
     def pre_install():
