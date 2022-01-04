@@ -45,11 +45,12 @@ class Install:
         file.close()
 
         for key, vlr in disks.items():
-            print(f"[{key}] ---> {vlr[1]}")
+            print(f"[{key}] ---> {vlr[1]}\n")
 
-        disk = disks.get(int(input("Select your disk: ")))
-
-        print(disks)
+        print()
+        disk_select = disks.get(int(input("Select your disk: ")))
+        print()
+        print(disk_select)
 
     @staticmethod
     def pre_install():
