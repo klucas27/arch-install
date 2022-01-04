@@ -30,6 +30,7 @@ class Install:
                 "Copy Log": "cp log.txt /mnt/etc",
                 "Enter System - 1": "arch-chroot /mnt",
                 "Remove exit": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Edit Enter /etc": 'echo "cd /etc" >> /mnt/etc/bash.bashrc',
                 "Edit Domain": 'echo "chmod 777 scp.sh" >> /mnt/etc/bash.bashrc',
                 "Edit bash": "echo \"./scp.sh\" >> /mnt/etc/bash.bashrc",
                 "Remove password root": "sed -i '1d' /mnt/etc/passwd",
