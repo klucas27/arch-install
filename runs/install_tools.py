@@ -23,14 +23,17 @@ class Install:
                 "Install System": "pacstrap /mnt base base-devel linux linux-firmware",
                 "Gen fstab": "genfstab -U -p /mnt >> /mnt/etc/fstab",
                 "Install Python": "pacstrap /mnt python3",
-                "echo sleep": "echo 'sleep 2' >> /mnt/etc/bash.bashrc",
-                "echo exit": "echo 'exit' >> /mnt/etc/bash.bashrc",
+                "echo sleep": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
+                "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
+                "Copy script": "cp scp.sh /mnt/etc",
+                "Copy Info": "cp info.txt /mnt/etc",
+                "Copy Log": "cp log.txt /mnt/etc",
                 "Enter System - 1": "arch-chroot /mnt",
                 "Remove exit": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Edit Domain": 'echo "chmod 777 scp.sh" >> /mnt/etc/bash.bashrc',
-                "Edit bash": "echo './scp.sh' >> /mnt/etc/bash.bashrc",
+                "Edit bash": "echo \"./scp.sh\" >> /mnt/etc/bash.bashrc",
                 "Remove password root": "sed -i '1d' /mnt/etc/passwd",
-                "Putting root": 'echo "root::0:0:root:/root:/bin/bash\\n" >> /mnt/etc/passwd',
+                "Putting root": 'echo "root::0:0:root:/root:/bin/bash\n" >> /mnt/etc/passwd',
                 "Enter System - 2": "arch-chroot /mnt",
                 "Remove bash": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove Domain": "sed -i '$ d' /mnt/etc/bash.bashrc",
@@ -43,9 +46,6 @@ class Install:
                 file.write(f"\n{x}")
 
         file.close()
-        run_os("cp log.txt /mnt/etc")
-        run_os("cp info.txt /mnt/etc")
-        run_os("cp scp.sh /mnt/etc")
 
     @staticmethod
     def partition_bios(size_root, size_home):
