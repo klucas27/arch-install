@@ -13,20 +13,27 @@ def get_output(cmd):
 
 
 class Install:
-    def __init__(self, *args):
+    def __init__(self):
         pass
 
     @staticmethod
     def install_system():
-
         with open("log.txt", "r+") as file:
             install_commands = {
                 "Install System": "pacstrap /mnt base base-devel linux linux-firmware",
                 "Gen fstab": "genfstab -U -p /mnt >> /mnt/etc/fstab",
                 "Install Python": "pacstrap /mnt python3",
-                "Edit Domain": "echo chmod 777 scp.sh'",
-                "Edit bash": "echo './scp.sh'",
-                "Enter System": "arch-chroot /mnt",
+                "echo sleep": "echo 'sleep 2' >> /mnt/etc/bash.bashrc",
+                "echo exit": "echo 'exit' >> /mnt/etc/bash.bashrc",
+                "Enter System - 1": "arch-chroot /mnt",
+                "Remove exit": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Edit Domain": 'echo "chmod 777 scp.sh" >> /mnt/etc/bash.bashrc',
+                "Edit bash": "echo './scp.sh' >> /mnt/etc/bash.bashrc",
+                "Remove password root": "sed -i '1d' /mnt/etc/passwd",
+                "Putting root": 'echo "root::0:0:root:/root:/bin/bash\\n" >> /mnt/etc/passwd',
+                "Enter System - 2": "arch-chroot /mnt",
+                "Remove bash": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove Domain": "sed -i '$ d' /mnt/etc/bash.bashrc",
             }
 
             for key, vlr in install_commands.items():
@@ -66,6 +73,20 @@ class Install:
             file.writelines(f"\nSelected Disk: {disk_select[3]}")
             file.writelines(f"\nSize Disk: {disk_select[2]}")
             disk = disk_select[3]
+
+            with open("scp.sh", "a") as script:
+                script.write("echo 'Install Grub'")
+                script.write(f"grub-install --force --target=i386-pc --recheck {disk}")
+                script.write("sleep 2")
+                script.write("echo 'Copy grub.mo'")
+                script.write("cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo")
+                script.write("sleep 2")
+                script.write("echo 'Config Grub'")
+                script.write("grub-mkconfig -o /boot/grub/grub.cfg")
+                script.write("sleep 2")
+
+            script.close()
+
             mount_disk = {
                 "Create label": f"parted {disk} mklabel gpt -s",
                 "Create boot": f"parted {disk} mkpart primary ext4 1Mib 1GiB",
