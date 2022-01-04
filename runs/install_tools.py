@@ -34,7 +34,6 @@ class Install:
         with open("info.txt", "r") as file:
             cont = 1
             for pas in file.readlines():
-                print(pas)
                 if pas.startswith("Disk"):
                     disks[cont] = []
                     disks.get(cont).append(pas)
