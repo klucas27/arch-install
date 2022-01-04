@@ -74,7 +74,7 @@ class Install:
             file.writelines(f"\nSize Disk: {disk_select[2]}")
             disk = disk_select[3]
 
-            with open("scp.sh", "a") as script:
+            with open("../scp.sh", "a") as script:
                 script.write("echo 'Install Grub'")
                 script.write(f"grub-install --force --target=i386-pc --recheck {disk}")
                 script.write("sleep 2")
