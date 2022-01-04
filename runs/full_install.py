@@ -17,6 +17,5 @@ def full_run():
     execs.get_disks()       # Get Disks
 
 
-
 if __name__ == '__main__':
     full_run()
