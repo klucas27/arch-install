@@ -24,8 +24,8 @@ class Install:
                 "Install System": "pacstrap /mnt base base-devel linux linux-firmware",
                 "Gen fstab": "genfstab -U -p /mnt >> /mnt/etc/fstab",
                 "Install Python": "pacstrap /mnt python3",
-                "Edit Domain": "echo chmod +777 script_shell.sh'",
-                "Edit bash": "echo './script_shell.sh'",
+                "Edit Domain": "echo chmod 777 scp.sh'",
+                "Edit bash": "echo './scp.sh'",
                 "Enter System": "arch-chroot /mnt",
             }
 
@@ -38,6 +38,7 @@ class Install:
         file.close()
         run_os("cp log.txt /mnt/etc")
         run_os("cp info.txt /mnt/etc")
+        run_os("cp scp.sh /mnt/etc")
 
     @staticmethod
     def partition_bios(size_root, size_home):
