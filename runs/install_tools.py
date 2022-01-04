@@ -75,15 +75,15 @@ class Install:
             disk = disk_select[3]
 
             with open("../scp.sh", "a") as script:
-                script.write("echo 'Install Grub'")
-                script.write(f"grub-install --force --target=i386-pc --recheck {disk}")
-                script.write("sleep 2")
-                script.write("echo 'Copy grub.mo'")
-                script.write("cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo")
-                script.write("sleep 2")
-                script.write("echo 'Config Grub'")
-                script.write("grub-mkconfig -o /boot/grub/grub.cfg")
-                script.write("sleep 2")
+                script.write("\necho 'Install Grub'")
+                script.write(f"\ngrub-install --force --target=i386-pc --recheck {disk}")
+                script.write("\nsleep 2")
+                script.write("\necho 'Copy grub.mo'")
+                script.write("\ncp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo")
+                script.write("\nsleep 2")
+                script.write("\necho 'Config Grub'")
+                script.write("\ngrub-mkconfig -o /boot/grub/grub.cfg")
+                script.write("\nsleep 2")
 
             script.close()
 
@@ -105,11 +105,14 @@ class Install:
                 "Mount swap": f"swapon {disk}4",
             }
 
-            for key, vlr in mount_disk.items():
-                print(key)
-                time.sleep(1)
-                x = get_output(str(vlr))
-                file.write(f"\n{x}")
+            with open("log.txt", "a+") as filelog:
+                for key, vlr in mount_disk.items():
+                    print(key)
+                    time.sleep(1)
+                    x = get_output(str(vlr))
+                    filelog.write(f"\n{x}")
+
+            filelog.close()
 
         file.close()
 
