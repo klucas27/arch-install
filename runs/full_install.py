@@ -19,7 +19,7 @@ def full_run():
 
     execs.partition_bios(55, 96)  # Partition Bios
 
-    # gen_scr.run_newfile()           # Generator new File!
+    gen_scr.run_newfile()           # Generator new File!
 
     execs.install_system()        # Install System
 

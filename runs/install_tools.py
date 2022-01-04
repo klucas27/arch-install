@@ -105,7 +105,7 @@ class Install:
                         file2.write(f"\n{pas}")
                         file.write(f"\n\t\t{pas}")
 
-        file2.close()
+                    file2.close()
         file.close()
 
     @staticmethod
