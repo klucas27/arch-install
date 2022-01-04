@@ -1,8 +1,6 @@
 
-disk = ""
-
-
 def run_newfile():
+    disk = ""
     with open("info.txt", "r+") as file:
         for pas in file.readline():
             if pas.startswith("Selected Disk:"):
@@ -30,9 +28,13 @@ def run_newfile():
 
         ]
 
-        with open("scp.sh" "w+") as newfile:
+        with open("scp.sh", "w+") as newfile:
             for index in new_file:
                 newfile.write(f"\n{index}")
 
     file.close()
     newfile.close()
+
+
+if __name__ == "__main__":
+    run_newfile()
