@@ -23,18 +23,19 @@ class Install:
                 "Install System": "pacstrap /mnt base base-devel linux linux-firmware",
                 "Gen fstab": "genfstab -U -p /mnt >> /mnt/etc/fstab",
                 "Install Python": "pacstrap /mnt python3",
-                "echo sleep": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
+                "echo sleep #1": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Copy script": "cp scp.sh /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
                 "Copy Log": "cp log.txt /mnt/etc",
-                "Enter System - 1": "arch-chroot /mnt",
+                "Enter System #1": "arch-chroot /mnt",
                 "Remove exit": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Edit Enter /etc": 'echo "cd /etc" >> /mnt/etc/bash.bashrc',
                 "Edit Domain": 'echo "chmod 777 scp.sh" >> /mnt/etc/bash.bashrc',
+                "echo sleep #2": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
                 "Edit bash": "echo \"./scp.sh\" >> /mnt/etc/bash.bashrc",
                 "Remove password root": "sed -i '1d' /mnt/etc/passwd",
-                "Putting root": 'echo "root::0:0:root:/root:/bin/bash\n" >> /mnt/etc/passwd',
+                "Putting root": 'echo "\nroot::0:0:root:/root:/bin/bash\n" >> /mnt/etc/passwd',
                 "Enter System - 2": "arch-chroot /mnt",
                 "Remove bash": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove Domain": "sed -i '$ d' /mnt/etc/bash.bashrc",
@@ -42,10 +43,11 @@ class Install:
 
             for key, vlr in install_commands.items():
                 print(key)
-                time.sleep(1)
-                x = get_output(str(vlr))
-                file.write(f"\n{x}")
-                print(f"\t\t\t {x}")
+                time.sleep(2)
+                # x = get_output(str(vlr))
+                run_os(str(vlr))
+                # file.write(f"\n{x}")
+                # print(f"\t\t\t {x}")
 
         file.close()
 
@@ -75,21 +77,6 @@ class Install:
             file.writelines(f"\nSelected Disk: {disk_select[3]}")
             file.writelines(f"\nSize Disk: {disk_select[2]}")
             disk = disk_select[3]
-
-            with open("../scp.sh", "a") as script:
-                script.write("\necho 'Install Grub'")
-                script.write(f"\ngrub-install --force --target=i386-pc --recheck {disk}")
-                script.write("\nsleep 2")
-                script.write("\necho 'Copy grub.mo'")
-                script.write("\ncp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo")
-                script.write("\nsleep 2")
-                script.write("\necho 'Config Grub'")
-                script.write("\ngrub-mkconfig -o /boot/grub/grub.cfg")
-                script.write("\nsleep 2")
-                print("copy config Grub!")
-                time.sleep(12)
-
-            script.close()
 
             mount_disk = {
                 "Create label": f"parted {disk} mklabel gpt -s",

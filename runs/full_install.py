@@ -1,6 +1,7 @@
 import os
 import time
 from runs import install_tools
+from runs import new_file
 
 
 def full_run():
@@ -9,13 +10,15 @@ def full_run():
     time.sleep(3)
     execs = install_tools.Install()
 
-    execs.pre_install()             # Exec Pré Install
+    execs.pre_install()             # Exec Pré Install.
 
-    execs.get_disks()               # Get Disks
+    execs.get_disks()               # Get Disks.
 
-    execs.partition_bios(55, 96)    # Partition Bios
+    execs.partition_bios(55, 96)    # Partition Bios.
 
-    execs.install_system()          # Install System
+    new_file.run_new_file()         # Creator script.
+
+    execs.install_system()          # Install System.
 
 
 if __name__ == '__main__':
