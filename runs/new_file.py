@@ -85,6 +85,7 @@ def run_new_file():
         "pacman -Sy xorg-xinit --noconfirm",
         "pacman -Sy pulseaudio-equalizer --noconfirm",
         "pacman -Sy networkmanager --noconfirm",
+        "pacman -Sy git --noconfirm",
 
         "echo 'Config xinitrc'",         # Config XFCE4
         "echo \"exec startxfce4\" > ~/.xinitrc",
@@ -94,8 +95,6 @@ def run_new_file():
 
         "echo 'Activate NetworkManager'",
         "systemctl enable NetworkManager",
-
-        "exit"
 
     ]
 

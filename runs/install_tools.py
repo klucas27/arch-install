@@ -37,11 +37,15 @@ class Install:
                 "Edit Domain": 'echo "sudo chmod 777 /etc/scp.sh" >> /mnt/etc/bash.bashrc',
                 "echo sleep #2": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
                 "Edit bash": "echo \"sudo ./scp.sh\" >> /mnt/etc/bash.bashrc",
+                "Edit exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Remove password root": "sed -i '1d' /mnt/etc/passwd",
                 "Putting root": 'echo "\nroot::0:0:root:/root:/bin/bash\n" >> /mnt/etc/passwd',
                 "Enter System - 2": "arch-chroot /mnt",
-                "Remove bash": "sed -i '$ d' /mnt/etc/bash.bashrc",
-                "Remove Domain": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove enter /etc": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove Permission": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove sleep": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove Script": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove exit#2": "sed -i '$ d' /mnt/etc/bash.bashrc",
             }
 
             for key, vlr in install_commands.items():
