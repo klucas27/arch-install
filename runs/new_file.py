@@ -151,6 +151,7 @@ def run_new_file():
             script.write("sleep 2\n")
 
     script.close()
+    print(username)
 
 
 if __name__ == '__main__':

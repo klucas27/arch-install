@@ -10,12 +10,10 @@ def full_run():
     time.sleep(5)
     execs = install_tools.Install()
 
-
-
     username = input("\nEnter your username: ")
 
     with open("log.txt", "a+") as file:
-        file.write(f"Username: {str(username)}")
+        file.write(f"\nUsername: {str(username)}")
     file.close()
 
     execs.pre_install()             # Exec Pré Install.
@@ -28,7 +26,7 @@ def full_run():
 
     execs.install_system()          # Install System.
 
-    with open("/mnt/etc/shadow", "r+") as shadow:
+    with open("/mnt/etc/shadow", "r") as shadow:
         x = open("shadow", "w+")
         for pas in shadow.readlines():
             if pas.startswith(str(username)):
@@ -37,7 +35,7 @@ def full_run():
         x.close()
     shadow.close()
 
-    with open("/mnt/etc/passwd", "r+") as passwd:
+    with open("/mnt/etc/passwd", "r") as passwd:
         x = open("passwd", "w+")
         for pas in passwd.readlines():
             if pas.startswith(str(username)):
@@ -47,13 +45,14 @@ def full_run():
     time.sleep(1)
     os.system("rm -rf /mnt/etc/shadow")
     time.sleep(1)
-    os.system("cp shadow /mnt/etc/")
-    time.sleep(1)
     os.system("rm -rf /mnt/etc/passwd")
     time.sleep(1)
-    os.system("cp passwd /mnt/etc/")
+    os.system("cp -fv shadow /mnt/etc/")
+    time.sleep(1)
+    os.system("cp -fv passwd /mnt/etc/")
     time.sleep(1)
 
+    print("Finished!")
     exit()
 
 

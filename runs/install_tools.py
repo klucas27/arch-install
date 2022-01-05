@@ -108,11 +108,27 @@ class Install:
                 for key, vlr in mount_disk.items():
                     print(key)
                     time.sleep(1)
-                    x = get_output(str(vlr))
-                    filelog.write(f"\n{x}")
-
+                    # x = get_output(str(vlr))
+                    # filelog.write(f"\n{x}")
+                    run_os(f"{vlr}")
             filelog.close()
 
+        file.close()
+
+    @staticmethod
+    def get_disks():
+
+        print("Geting Disks...")
+        with open("log.txt", "a+") as file:
+            fdisk = get_output("fdisk -l")
+            file.write(f"\n{fdisk}")
+            for pas in fdisk.splitlines():
+                if pas.startswith("Disk /dev/s"):
+                    with open("info.txt", "a+") as file2:
+                        file2.write(f"\n{pas}")
+                        file.write(f"\n\t\t{pas}")
+
+                    file2.close()
         file.close()
 
     @staticmethod
@@ -141,6 +157,7 @@ class Install:
                 if info == "Verificando tipo de Inicialização":
                     with open("info.txt", "a+") as file:
                         saida = get_output(command)
+                        print(saida)
                         logfile.writelines(f"\n{saida}")
                         if saida.count("cannot access"):
                             file.write("\ninici: BIOS")
@@ -156,6 +173,7 @@ class Install:
 
                     with open("info.txt", "a+") as file:
                         saida = get_output(command).splitlines()
+                        print(saida)
                         logfile.writelines(f"\n{saida}")
                         for ver in saida:
                             if ver.startswith("Download:"):
@@ -171,22 +189,6 @@ class Install:
                 logfile.writelines(f"\n{comd}")
 
         logfile.close()
-        file.close()
-
-    @staticmethod
-    def get_disks():
-
-        print("Geting Disks...")
-        with open("log.txt", "a+") as file:
-            fdisk = get_output("fdisk -l")
-            file.write(f"\n{fdisk}")
-            for pas in fdisk.splitlines():
-                if pas.startswith("Disk /dev/s"):
-                    with open("info.txt", "a+") as file2:
-                        file2.write(f"\n{pas}")
-                        file.write(f"\n\t\t{pas}")
-
-                    file2.close()
         file.close()
 
 
