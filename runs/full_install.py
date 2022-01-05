@@ -10,7 +10,7 @@ def full_run():
     time.sleep(5)
     execs = install_tools.Install()
 
-    execs.get_disks()               # Get Disks.
+
 
     username = input("\nEnter your username: ")
 
@@ -19,6 +19,8 @@ def full_run():
     file.close()
 
     execs.pre_install()             # Exec Pré Install.
+
+    execs.get_disks()               # Get Disks.
 
     execs.partition_bios(55, 96)    # Partition Bios.
 
