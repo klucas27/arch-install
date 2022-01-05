@@ -17,31 +17,22 @@ def run_new_file():
         'echo "Install Arch Linux in ROOT"',
         'sleep 10',
 
+
+        # apps Necessaries started
         "pacman -Sy reflector --noconfirm",
+
+        "echo 'Config Mirror List'",
+        "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
+
+        "pacman -Sy sudo --noconfirm",
+        "pacman -Sy python3 --noconfirm",
+
 
         "echo 'zoneinfo config..'",
         "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime",
 
         "echo 'hwclock sync:'",
         "hwclock --systohc",
-
-        "echo 'Config Mirror List'",
-        "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
-
-        "echo 'Install Tools:'",
-        "pacman -Sy firefox --noconfirm",
-        "pacman -Sy xorg-server --noconfirm",
-        "pacman -Sy nano --noconfirm",
-        "pacman -Sy vim --noconfirm",
-        "pacman -Sy dosfstools --noconfirm",
-        "pacman -Sy os-prober --noconfirm",
-        "pacman -Sy mtools --noconfirm",
-        "pacman -Sy network-manager-applet --noconfirm",
-        "pacman -Sy networkmanager --noconfirm",
-        "pacman -Sy wpa_supplicant --noconfirm",
-        "pacman -Sy wireless_tools --noconfirm",
-        "pacman -Sy dialog --noconfirm",
-        "pacman -Sy sudo --noconfirm",
 
         "echo 'Locale Config..'",
         "echo LANG = pt_BR.UTF-8 >> /etc/locale.conf",
@@ -56,9 +47,77 @@ def run_new_file():
         "echo 'Gen Local'",
         "locale-gen",
 
-        "echo 'Install Python3'",
-        "pacman -Sy python3 --noconfirm",
 
+        # install GUI
+        "echo 'Install XFCE4'",
+        "pacman -Sy xfce4 --noconfirm",
+        "pacman -Sy xfce4-goodies --noconfirm",
+        "echo 'Config xinitrc'",                        # Config XFCE4
+        "echo \"exec startxfce4\" > ~/.xinitrc",
+
+
+        # install Display manager
+        "pacman -Sy lxdm-gtk3 --noconfirm",
+
+        "echo 'Activate LXDM'",                         # active Display
+        "systemctl enable lxdm.service",
+
+        "echo 'Config set-default'",                    # config set-default
+        "systemctl set-default graphical.target",
+
+        "echo 'Install Tools:'",
+
+        # Apps Files
+        "pacman -Sy gvfs --noconfirm",
+        "pacman -Sy thunar --noconfirm",
+        "pacman -Sy xarchiver --noconfirm",
+
+
+        # Apps redes
+        "pacman -Sy networkmanager --noconfirm",
+        "pacman -Sy network-manager-applet --noconfirm",
+        "pacman -Sy wpa_supplicant --noconfirm",
+        "pacman -Sy wireless_tools --noconfirm",
+
+        "echo 'Activate NetworkManager'",               # active rede
+        "systemctl enable NetworkManager",
+
+
+        # Apps Audio
+        "pacman -Sy pavucontrol --noconfirm",
+        "pacman -Sy pulseaudio-equalizer --noconfirm",
+
+
+        # Navegadores
+        "pacman -Sy firefox --noconfirm",
+
+
+        # Editores
+        "pacman -Sy nano --noconfirm",
+        "pacman -Sy vim --noconfirm",
+
+
+        # System
+        "pacman -Sy gnome-terminal --noconfirm",
+        "pacman -Sy dosfstools --noconfirm",
+        "pacman -Sy mtools --noconfirm",
+        "pacman -Sy dialog --noconfirm",
+
+
+        # Startup
+        "pacman -Sy os-prober --noconfirm",
+        "pacman -Sy xorg-xinit --noconfirm",
+        "pacman -Sy xorg-server --noconfirm",
+
+
+        # Others
+        "pacman -Sy git --noconfirm",
+        "pacman -Sy grub-customizer",
+        "pacman -Sy p7zip",
+
+
+
+        # Install Grub
         "echo 'Download Grub'",
         "pacman -Sy grub --noconfirm",
 
@@ -68,33 +127,10 @@ def run_new_file():
         "echo 'Copy grub.mo'",
         "cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo",
 
-        "echo 'Config Grub'",
+        "echo 'Config Grub'",                           # Config Grub
         "grub-mkconfig -o /boot/grub/grub.cfg",
 
-        "echo 'Install XFCE4'",         # install XFCE4
-        "pacman -Sy xfce4 --noconfirm",
-        "pacman -Sy xfce4-goodies --noconfirm",
-        "pacman -Sy xfce4-terminal --noconfirm",
-        "pacman -Sy pavucontrol --noconfirm",
-        "pacman -Sy lightdm --noconfirm",
-        "pacman -Sy lightdm-gtk-greeter --noconfirm",
-        "pacman -Sy gvfs --noconfirm",
-        "pacman -Sy xarchiver --noconfirm",
-        "pacman -Sy thunar --noconfirm",
-        "pacman -Sy gnome-terminal --noconfirm",
-        "pacman -Sy xorg-xinit --noconfirm",
-        "pacman -Sy pulseaudio-equalizer --noconfirm",
-        "pacman -Sy networkmanager --noconfirm",
-        "pacman -Sy git --noconfirm",
 
-        "echo 'Config xinitrc'",         # Config XFCE4
-        "echo \"exec startxfce4\" > ~/.xinitrc",
-
-        "echo 'Activate lightdm'",
-        "systemctl enable lightdm",
-
-        "echo 'Activate NetworkManager'",
-        "systemctl enable NetworkManager",
 
     ]
 
