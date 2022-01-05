@@ -26,7 +26,7 @@ def run_new_file():
         "hwclock --systohc",
 
         "echo 'Config Mirror List'",
-        "reflector --verbose --latest 5 --sort rate --save/etc/pacman.d/mirrorlist",
+        "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
 
         "echo 'Install Tools:'",
         "pacman -Sy firefox --noconfirm",
