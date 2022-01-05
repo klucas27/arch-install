@@ -32,7 +32,7 @@ sleep 2
 echo 'Download Grub'
 pacman -Sy grub --noconfirm
 echo 'Install Tools 2'
-pacman -Sy xfce4 xfce4-goodies xfce4-terminal pavucontrol lightdm lightdm-gtk-greeter gvfs xarchiver thunar gnome-terminal xorg-xinit --noconfirm
+pacman -Sy xfce4 xfce4-goodies xfce4-terminal pavucontrol lightdm lightdm-gtk-greeter gvfs xarchiver thunar gnome-terminal xorg-xinit pulseaudio-equalizer --noconfirm
 sleep 2
 echo 'Config xinitrc'
 echo \"exec startxfce4\" > ~/.xinitrc

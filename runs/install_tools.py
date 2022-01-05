@@ -45,6 +45,7 @@ class Install:
                 time.sleep(1)
                 x = get_output(str(vlr))
                 file.write(f"\n{x}")
+                print(f"\t\t\t {x}")
 
         file.close()
 
@@ -85,6 +86,8 @@ class Install:
                 script.write("\necho 'Config Grub'")
                 script.write("\ngrub-mkconfig -o /boot/grub/grub.cfg")
                 script.write("\nsleep 2")
+                print("copy config Grub!")
+                time.sleep(12)
 
             script.close()
 
