@@ -1,11 +1,13 @@
 
 def run_new_file():
     disk = ""
-
+    username = ""
     with open("info.txt", "r") as info:
         for pas in info.readlines():
             if pas.startswith("Selected Disk"):
                 disk = pas[15:]
+            if pas.startswith("Username"):
+                username = pas[10:]
 
     info.close()
 
@@ -136,6 +138,10 @@ def run_new_file():
         "echo 'Config xinitrc'",                        # Config XFCE4
         "echo \"exec startlxqt\" > ~/.xinitrc",
         # "echo \"exec startxfce4\" > ~/.xinitrc",
+
+
+        # Create User
+        f"useradd -m {username}",
 
     ]
 

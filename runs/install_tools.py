@@ -116,22 +116,6 @@ class Install:
         file.close()
 
     @staticmethod
-    def get_disks():
-
-        print("Geting Disks...")
-        with open("log.txt", "a+") as file:
-            fdisk = get_output("fdisk -l")
-            file.write(f"\n{fdisk}")
-            for pas in fdisk.splitlines():
-                if pas.startswith("Disk /dev/s"):
-                    with open("info.txt", "a+") as file2:
-                        file2.write(f"\n{pas}")
-                        file.write(f"\n\t\t{pas}")
-
-                    file2.close()
-        file.close()
-
-    @staticmethod
     def pre_install():
 
         run_os("clear")
@@ -187,6 +171,22 @@ class Install:
                 logfile.writelines(f"\n{comd}")
 
         logfile.close()
+        file.close()
+
+    @staticmethod
+    def get_disks():
+
+        print("Geting Disks...")
+        with open("log.txt", "a+") as file:
+            fdisk = get_output("fdisk -l")
+            file.write(f"\n{fdisk}")
+            for pas in fdisk.splitlines():
+                if pas.startswith("Disk /dev/s"):
+                    with open("info.txt", "a+") as file2:
+                        file2.write(f"\n{pas}")
+                        file.write(f"\n\t\t{pas}")
+
+                    file2.close()
         file.close()
 
 
