@@ -25,7 +25,7 @@ class Install:
                 "Install Python": "pacstrap /mnt python3",
                 "Install Reflector": "pacstrap /mnt reflector",
                 "echo sleep #1": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
-                "echo evdev": "echo \"./10-evdev.conf\" >> /mnt/etc/bash.bashrc",
+                # "echo evdev": "echo \"./10-evdev.conf\" >> /mnt/etc/bash.bashrc",
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Copy script": "cp scp.sh /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
