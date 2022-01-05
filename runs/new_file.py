@@ -17,6 +17,8 @@ def run_new_file():
         'echo "Install Arch Linux in ROOT"',
         'sleep 10',
 
+        "pacman -Sy reflector --noconfirm",
+
         "echo 'zoneinfo config..'",
         "ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime",
 
@@ -27,8 +29,19 @@ def run_new_file():
         "reflector --verbose --latest 5 --sort rate --save/etc/pacman.d/mirrorlist",
 
         "echo 'Install Tools:'",
-        "pacman -Sy firefox reflector xorg-server nano vim dosfstools os-prober mtools network-manager"
-        "-applet networkmanager wpa_supplicant wireless_tools dialog sudo --noconfirm",
+        "pacman -Sy firefox --noconfirm",
+        "pacman -Sy xorg-server --noconfirm",
+        "pacman -Sy nano --noconfirm",
+        "pacman -Sy vim --noconfirm",
+        "pacman -Sy dosfstools --noconfirm",
+        "pacman -Sy os-prober --noconfirm",
+        "pacman -Sy mtools --noconfirm",
+        "pacman -Sy network-manager-applet --noconfirm",
+        "pacman -Sy networkmanager --noconfirm",
+        "pacman -Sy wpa_supplicant --noconfirm",
+        "pacman -Sy wireless_tools --noconfirm",
+        "pacman -Sy dialog --noconfirm",
+        "pacman -Sy sudo --noconfirm",
 
         "echo 'Locale Config..'",
         "echo LANG = pt_BR.UTF-8 >> /etc/locale.conf",
@@ -59,8 +72,19 @@ def run_new_file():
         "grub-mkconfig -o /boot/grub/grub.cfg",
 
         "echo 'Install XFCE4'",         # install XFCE4
-        "pacman -Sy xfce4 xfce4-goodies xfce4-terminal pavucontrol lightdm lightdm-gtk-greeter gvfs xarchiver thunar gn"
-        "ome-terminal xorg-xinit pulseaudio-equalizer --noconfirm",
+        "pacman -Sy xfce4 --noconfirm",
+        "pacman -Sy xfce4-goodies --noconfirm",
+        "pacman -Sy xfce4-terminal --noconfirm",
+        "pacman -Sy pavucontrol --noconfirm",
+        "pacman -Sy lightdm --noconfirm",
+        "pacman -Sy lightdm-gtk-greeter --noconfirm",
+        "pacman -Sy gvfs --noconfirm",
+        "pacman -Sy xarchiver --noconfirm",
+        "pacman -Sy thunar --noconfirm",
+        "pacman -Sy gnome-terminal --noconfirm",
+        "pacman -Sy xorg-xinit --noconfirm",
+        "pacman -Sy pulseaudio-equalizer --noconfirm",
+        "pacman -Sy networkmanager --noconfirm",
 
         "echo 'Config xinitrc'",         # Config XFCE4
         "echo \"exec startxfce4\" > ~/.xinitrc",
@@ -70,6 +94,8 @@ def run_new_file():
 
         "echo 'Activate NetworkManager'",
         "systemctl enable NetworkManager",
+
+        "exit"
 
     ]
 
