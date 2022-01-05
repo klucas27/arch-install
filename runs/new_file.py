@@ -129,7 +129,10 @@ def run_new_file():
 
         "echo 'Config Grub'",                           # Config Grub
         "grub-mkconfig -o /boot/grub/grub.cfg",
-
+        "cp Xenlism-Arch /usr/share/grub/themes/",
+        "echo 'GRUB_THEME=\"/usr/share/grub/themes/Xenlism-Arch/theme.txt\"' >> /etc/default/grub",
+        "echo 'GRUB_DISABLE_OS_PROBER=true' >> /etc/default/grub",
+        "grub-mkconfig -o /boot/grub/grub.cfg",
 
 
     ]
