@@ -29,7 +29,7 @@ class Install:
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Copy script": "cp scp.sh /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
-                "Copy theme-grub": "cp Xenlism-Arch /mnt/etc",
+                "Copy theme-grub": "cp -r Xenlism-Arch /mnt/etc",
                 "Copy Log": "cp log.txt /mnt/etc",
                 "Copy evdev": "cp 10-evdev.conf /mnt/etc",
                 "Enter System #1": "arch-chroot /mnt",
