@@ -68,6 +68,7 @@ def run_new_file():
         # Apps Audio
         "pacman -Sy pavucontrol --noconfirm",
         "pacman -Sy pulseaudio-equalizer --noconfirm",
+        "pacman -Sy alsa-utils --noconfirm",
 
 
         # Navegadores
@@ -97,6 +98,9 @@ def run_new_file():
         "pacman -Sy git --noconfirm",
         "pacman -Sy grub-customizer --noconfirm",
         "pacman -Sy p7zip --noconfirm",
+        "pacman -Sy gnome-calculator --noconfirm",
+        "pacman -Sy libreoffice-fresh --noconfirm",
+        "pacman -Sy libreoffice-fresh-pt-br --noconfirm",
 
 
         # Install Grub
@@ -118,7 +122,12 @@ def run_new_file():
 
 
         # install GUI
-        "pacman -Sy plasma-desktop --noconfirm",
+        "pacman -Sy budgie-desktop --noconfirm",
+
+
+
+        # Install KDE
+        # "pacman -Sy plasma-desktop --noconfirm",
 
 
         # Install GNOME
@@ -148,11 +157,15 @@ def run_new_file():
 
 
         # Config xinit
-        "echo 'Config xinitrc'",
-        "echo \"startplasma-x11\" > ~/.xinitrc",
-        "echo \"DESKTOP_SESSION=plasma\" > ~/.xinitrc",
+        # "echo 'Config xinitrc'",
+        # "echo \"startplasma-x11\" > ~/.xinitrc",
+        # "echo \"DESKTOP_SESSION=plasma\" > ~/.xinitrc",
         # "echo \"exec startxfce4\" > ~/.xinitrc",
 
+        # xinit budgie
+        "echo 'Config xinitrc'",
+        "echo \"export XDG_CURRENT_DESKTOP=Budgie:GNOME\" > ~/.xinitrc",
+        "echo \"exec budgie-desktop\" > ~/.xinitrc",
 
         # Create User
         f"useradd -m {username}",
