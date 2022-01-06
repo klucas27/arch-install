@@ -1,7 +1,6 @@
 import subprocess
 import os
 import time
-import re
 
 
 def run_os(cmd):
@@ -14,51 +13,12 @@ def get_output(cmd):
 
 class Install:
     def __init__(self):
-        run_os("clear")
-        self.username = input("\nEnter your username: ")
+        ...
 
-        with open("log.txt", "a+") as file:
-            fdisk = get_output("fdisk -l")
-            file.write(f"\n{fdisk}")
-            for pas in fdisk.splitlines():
-                if pas.startswith("Disk /dev/s"):
-                    with open("info.txt", "a+") as file2:
-                        file2.write(f"\n{pas}")
-                        file.write(f"\n\t\t{pas}")
-
-                    file2.close()
-        file.close()
-
-        r = re.compile(r"\D", re.ASCII)
-        disks = {}
-
-        with open("info.txt", "r+") as file:
-            cont = 1
-            for pas in file.readlines():
-                if pas.startswith("Disk"):
-                    disks[cont] = []
-                    disks.get(cont).append(pas)
-                    disks.get(cont).append(pas.split(sep=",")[0])
-                    disks.get(cont).append(r.sub("", pas.split(sep=",")[0].split(sep=":")[1]))
-                    disks.get(cont).append(pas[5:13])
-                    cont += 1
-
-            for key, vlr in disks.items():
-                print(f"\n[{key}] ---> {vlr[1]}")
-
-            print()
-            disk_select = disks.get(int(input("Select your disk: ")))
-            print()
-
-            file.writelines(f"\nSelected Disk: {disk_select[3]}")
-            file.writelines(f"\nSize Disk: {disk_select[2]}")
-            self.disk = disk_select[3]
-
-    def user(self):
-        return self.username
-
-    def disk(self):
-        return self.disk
+    @classmethod
+    def vars(cls, username, disk):
+        cls.username = username
+        cls.disk = disk
 
     @staticmethod
     def pre_install():
@@ -86,7 +46,6 @@ class Install:
                 if info == "Verificando tipo de Inicialização":
                     with open("info.txt", "a+") as file:
                         saida = get_output(command)
-                        print(saida)
                         logfile.writelines(f"\n{saida}")
                         if saida.count("cannot access"):
                             file.write("\ninici: BIOS")
@@ -102,7 +61,6 @@ class Install:
 
                     with open("info.txt", "a+") as file:
                         saida = get_output(command).splitlines()
-                        print(saida)
                         logfile.writelines(f"\n{saida}")
                         for ver in saida:
                             if ver.startswith("Download:"):
@@ -240,9 +198,7 @@ class Install:
         with open("log.txt", "a+") as file:
             file.write(f"\nUsername: {str(username)}")
         file.close()
-                
+
 
 if __name__ == "__main__":
-    test = Install()
-    test.pre_install()
-    test.partition_bios(55, 96)
+    pass

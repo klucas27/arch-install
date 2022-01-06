@@ -4,7 +4,7 @@ from runs import install_tools
 def run_new_file():
 
     run = install_tools.Install()
-    username = run.user
+    username = run.username
     disk = run.disk
 
     file = [
