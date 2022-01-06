@@ -1,15 +1,11 @@
+from runs import install_tools
+
 
 def run_new_file():
-    disk = ""
-    username = ""
-    with open("info.txt", "r") as info:
-        for pas in info.readlines():
-            if pas.startswith("Selected Disk"):
-                disk = pas[15:]
-            if pas.startswith("Username"):
-                username = pas[10:]
 
-    info.close()
+    run = install_tools.Install()
+    username = run.user
+    disk = run.disk
 
     file = [
         "# !/bin/bash",
@@ -151,7 +147,10 @@ def run_new_file():
             script.write("sleep 2\n")
 
     script.close()
+    print("*"*80)
     print(username)
+    print("*"*80)
+    input("\n>->->->->-> ")
 
 
 if __name__ == '__main__':
