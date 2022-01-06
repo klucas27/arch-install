@@ -144,13 +144,12 @@ def run_new_file():
     with open("scp.sh", "w+") as script:
         for pas in file:
             script.write(f"{pas}\n")
-            script.write("sleep 2\n")
+            script.write("sleep 1\n")
 
     script.close()
     print("*"*80)
-    print(username)
+    print(f"\n{username}", f"\n\n{disk}\n")
     print("*"*80)
-    input("\n>->->->->-> ")
 
 
 if __name__ == '__main__':

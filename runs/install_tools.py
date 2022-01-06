@@ -116,11 +116,11 @@ class Install:
                 "Install Python": "pacstrap /mnt python3",
                 "Install Reflector": "pacstrap /mnt reflector",
                 "echo sleep #1": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
-                # "echo evdev": "echo \"./10-evdev.conf\" >> /mnt/etc/",
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Copy script": "cp scp.sh /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
                 "Copy theme-grub": "cp -r Xenlism-Arch /mnt/etc",
+                "Copy evdev /mnt": "cp -r 10-evdev.conf /mnt/etc/X11/xorg.conf.d/",
                 "Copy Log": "cp log.txt /mnt/etc",
                 "Copy evdev": "cp 10-evdev.conf /mnt/etc",
                 "Enter System #1": "arch-chroot /mnt",
@@ -143,10 +143,10 @@ class Install:
             for key, vlr in install_commands.items():
                 print(key)
                 time.sleep(1)
-                x = get_output(str(vlr))
-                # run_os(str(vlr))
-                file.write(f"\n{x}")
-                print(f"\t\t\t {x}")
+                # x = get_output(str(vlr))
+                run_os(str(vlr))
+                # file.write(f"\n{x}")
+                # print(f"\t\t\t {x}")
 
         file.close()
 
@@ -185,14 +185,30 @@ class Install:
 
         passwd.close()
 
+        temp_sudoers = open("/mnt/etc/sudoers", "r").readlines()
+        with open("sudoers", "w+") as sudoers:
+            for pas in temp_sudoers:
+                print(pas)
+                if pas.startswith("root"):
+                    sudoers.write(pas)
+                    sudoers.write(f"{username} ALL=(ALL) ALL")
+                    continue
+                sudoers.write(pas)
+
+        sudoers.close()
+
         time.sleep(1)
         run_os("rm -rf /mnt/etc/passwd")
         time.sleep(1)
         run_os("rm -rf /mnt/etc/shadow")
         time.sleep(1)
+        run_os("rm -rf /mnt/etc/sudoers")
+        time.sleep(1)
         run_os("cp -f passwd /mnt/etc/")
         time.sleep(1)
         run_os("cp -f shadow /mnt/etc/")
+        time.sleep(1)
+        run_os("cp -f sudoers /mnt/etc/")
         time.sleep(1)
 
         with open("log.txt", "a+") as file:
