@@ -137,7 +137,7 @@ class Install:
                 "Remove Permission": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove sleep": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove Script": "sed -i '$ d' /mnt/etc/bash.bashrc",
-                "Remove exit#2": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove exit #2": "sed -i '$ d' /mnt/etc/bash.bashrc",
             }
 
             for key, vlr in install_commands.items():

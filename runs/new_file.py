@@ -45,15 +45,6 @@ def run_new_file():
         "echo 'Gen Local'",
         "locale-gen",
 
-        # install Display manager
-        "pacman -Sy lxdm-gtk3 --noconfirm",
-
-        "echo 'Activate LXDM'",                         # active Display
-        "systemctl enable lxdm.service",
-
-        "echo 'Config set-default'",                    # config set-default
-        "systemctl set-default graphical.target",
-
         "echo 'Install Tools:'",
 
         # Apps Files
@@ -68,7 +59,7 @@ def run_new_file():
         "pacman -Sy wpa_supplicant --noconfirm",
         "pacman -Sy wireless_tools --noconfirm",
 
-        "echo 'Activate NetworkManager'",               # active rede
+        "echo 'Activate NetworkManager'",                   # active rede
         "systemctl enable NetworkManager",
 
 
@@ -88,6 +79,7 @@ def run_new_file():
 
         # System
         "pacman -Sy gnome-terminal --noconfirm",
+        "pacman -Sy konsole --noconfirm",
         "pacman -Sy dosfstools --noconfirm",
         "pacman -Sy mtools --noconfirm",
         "pacman -Sy dialog --noconfirm",
@@ -115,7 +107,7 @@ def run_new_file():
         "echo 'Copy grub.mo'",
         "cp /usr/share/locale/en@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo",
 
-        "echo 'Config Grub'",                           # Config Grub
+        "echo 'Config Grub'",                           # personalize Grub
         "grub-mkconfig -o /boot/grub/grub.cfg",
         "cp -r Xenlism-Arch /usr/share/grub/themes/",
         "echo 'GRUB_THEME=\"/usr/share/grub/themes/Xenlism-Arch/theme.txt\"' >> /etc/default/grub",
@@ -124,15 +116,39 @@ def run_new_file():
 
 
         # install GUI
-        "echo 'Install LXQT'",
-        "pacman -Sy lxqt --noconfirm",
+        "pacman -Sy plasma-desktop --noconfirm",
+
+
+        # Install GNOME
+        # "echo Install GNOME",
+        # "pacman -Sy gnome gnome-terminal nautilus gnome-tweaks gnome-control-center gnome-backgrounds "
+        # "adwaita-icon-theme --noconfirm",
+
+
+        # Install LXQT
+        # "echo 'Install LXQT'",
+        # "pacman -Sy lxqt --noconfirm",
+
 
         # "echo 'Install XFCE4'",
         # "pacman -Sy xfce4 --noconfirm",
         # "pacman -Sy xfce4-goodies --noconfirm",
 
-        "echo 'Config xinitrc'",                        # Config XFCE4
-        "echo \"exec startlxqt\" > ~/.xinitrc",
+
+        # install Display manager
+        "pacman -Sy lxdm-gtk3 --noconfirm",
+
+        "echo 'Activate LXDM'",                         # active Display
+        "systemctl enable lxdm.service",
+
+        "echo 'Config set-default'",                    # config set-default
+        "systemctl set-default graphical.target",
+
+
+        # Config xinit
+        "echo 'Config xinitrc'",
+        "echo \"startplasma-x11\" > ~/.xinitrc",
+        "echo \"DESKTOP_SESSION=plasma\" > ~/.xinitrc",
         # "echo \"exec startxfce4\" > ~/.xinitrc",
 
 
