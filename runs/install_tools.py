@@ -20,8 +20,8 @@ class Install:
         cls.username = username
         cls.disk = disk
 
-    @staticmethod
-    def pre_install():
+    @classmethod
+    def pre_install(cls):
 
         run_os("clear")
         get_output("rm -rf log.txt")
@@ -66,17 +66,20 @@ class Install:
                             if ver.startswith("Download:"):
                                 file.write(f"\n{ver}")
                                 print("\t\t", ver)
+                                download = ver
                             if ver.startswith("Upload:"):
                                 file.write(f"\n{ver}")
                                 print("\t\t", ver)
+                                upload = ver
                                 time.sleep(1)
                         continue
 
                 comd = get_output(command)
                 logfile.writelines(f"\n{comd}")
-
         logfile.close()
         file.close()
+        cls.download = download
+        cls.upload = upload
 
     def partition_bios(self, size_root, size_home):
         disk = self.disk

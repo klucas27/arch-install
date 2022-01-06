@@ -6,6 +6,8 @@ def run_new_file():
     run = install_tools.Install()
     username = run.username
     disk = run.disk
+    download = run.download
+    upload = run.upload
 
     file = [
         "# !/bin/bash",
@@ -164,7 +166,7 @@ def run_new_file():
 
     script.close()
     print("*"*80)
-    print(f"\n{username}", f"\n\n{disk}\n")
+    print(f"\n{username}", f"\n\n{disk}\n", f"\n\n{download}\n", f"\n\n{upload}\n")
     print("*"*80)
 
 
