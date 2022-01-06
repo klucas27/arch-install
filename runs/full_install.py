@@ -55,32 +55,34 @@ def full_run():
 
     execs.vars(str(username), str(disk))
 
-    print("Start Pre-Install")
+    print("\nStart Pre-Install\n")
     execs.pre_install()             # Exec Pré Install.
     os.system("clear")
     time.sleep(1)
 
-    print("Start Partition Bios")
+    print("\nStart Partition Bios\n")
     execs.partition_bios(55, 96)    # Partition Bios.
     os.system("clear")
     time.sleep(1)
 
-    print("Start Run New File")
+    print("\nStart Run New File\n")
     new_file.run_new_file()         # Creator script.
     os.system("clear")
     time.sleep(1)
 
-    print("Start Install System")
+    print("\nStart Install System\n")
     execs.install_system()          # Install System.
     os.system("clear")
     time.sleep(1)
 
-    print("Start Config User")      # Config User.
+    print("\nStart Config User\n")      # Config User.
     execs.config_user()
     os.system("clear")
     time.sleep(1)
 
-    print("Finished!")
+    print("*"*80)
+    print("\nFinished!\n")
+    print("*"*80)
     exit()
 
 
