@@ -86,6 +86,7 @@ def run_new_file():
         "pacman -Sy dosfstools --noconfirm",
         "pacman -Sy mtools --noconfirm",
         "pacman -Sy dialog --noconfirm",
+        "pacman -Sy gnome-control-center --noconfirm",
 
 
         # Startup
