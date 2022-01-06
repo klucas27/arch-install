@@ -191,7 +191,7 @@ class Install:
                 print(pas)
                 if pas.startswith("root"):
                     sudoers.write(pas)
-                    sudoers.write(f"{username} ALL=(ALL) ALL")
+                    sudoers.write(f"{username} ALL=(ALL) ALL\n")
                     continue
                 sudoers.write(pas)
 
