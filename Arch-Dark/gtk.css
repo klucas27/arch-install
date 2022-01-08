@@ -1,0 +1,34 @@
+#lxdm {
+	background-image: url("archdark.jpg");
+	background-image: cover;
+	font: Monospace;	
+}
+
+#bottom_pane {
+	background-color: transparent;
+}
+
+#time {
+	font: Monospace 14;
+	color: #ffffff;
+}
+
+#user_list, #login_entry {
+	background-image: none;
+}
+
+#prompt, #bottom_pane GtkLabel {
+	color: #ffffff;
+}
+
+#label_keyboard {
+	color: #ffffff;
+}
+
+#label_lang {
+	color: #ffffff;
+}
+
+#label2 {
+	color: #ffffff;
+}

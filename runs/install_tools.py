@@ -16,9 +16,24 @@ class Install:
         ...
 
     @classmethod
-    def vars(cls, username, disk):
+    def vars(cls,
+             username,
+             disk,
+             country,
+             zoneinfo,
+             layout,
+             variant,
+             lang,
+             coding,):
+
         cls.username = username
         cls.disk = disk
+        cls.country = country
+        cls.zoneinfo = zoneinfo
+        cls.variant = variant
+        cls.layout = layout
+        cls.lang = lang
+        cls.coding = coding
 
     @classmethod
     def pre_install(cls):
@@ -123,7 +138,6 @@ class Install:
                 "Copy script": "cp scp.sh /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
                 "Copy theme-grub": "cp -r Xenlism-Arch /mnt/etc",
-                "Copy evdev /mnt": "cp -r 10-evdev.conf /mnt/etc/X11/xorg.conf.d/",
                 "Copy Log": "cp log.txt /mnt/etc",
                 "Copy evdev": "cp 10-evdev.conf /mnt/etc",
                 "Enter System #1": "arch-chroot /mnt",

@@ -7,6 +7,7 @@ import subprocess
 
 
 def full_run():
+    start = time.time()
     os.system("clear")
     print("\n", "*" * 50, "\n\n\t\tFull Install Started!\n\n", "*" * 50)
     time.sleep(3)
@@ -53,7 +54,16 @@ def full_run():
 
     execs = install_tools.Install()
 
-    execs.vars(str(username), str(disk))
+    execs.vars(str(username),
+               str(disk),
+               str("Brazil"),
+               str("America/Sao_Paulo"),
+               str("br"),
+               str("abnt2"),
+               str("pt_BR.UTF-8"),
+               str("UTF-8"),
+
+               )
 
     print("\nStart Pre-Install\n")
     execs.pre_install()             # Exec Pré Install.
@@ -80,8 +90,14 @@ def full_run():
     os.system("clear")
     time.sleep(1)
 
+    end = time.time()
+
     print("*"*80)
     print("\nFinished!\n")
+    print(f"\nUser: {username}\n")
+    print(f"\nPassword: \n")
+    time_total = ((end - start) / 60)
+    print("\nTime Total: %.2f\n" % round(time_total))
     print("*"*80)
     exit()
 
