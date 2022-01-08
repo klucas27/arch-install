@@ -97,7 +97,7 @@ def full_run():
     print(f"\nUser: {username}\n")
     print(f"\nPassword: \n")
     time_total = ((end - start) / 60)
-    print("\nTime Total: %.2f\n" % round(time_total))
+    print("\nTime Total: %.2f\n" % time_total)
     print("*"*80)
     exit()
 
