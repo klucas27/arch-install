@@ -136,8 +136,8 @@ def run_new_file(b_dev=True,
         "pacman -Sy konsole --noconfirm",
 
         # Install Vbox
-        "sudo pacman -Sy virtualbox",
-        "sudo pacman -Sy virtualbox-host-modules-arch",
+        "sudo pacman -Sy virtualbox --noconfirm",
+        "sudo pacman -Sy virtualbox-host-modules-arch --noconfirm",
         f"sudo gpasswd -a {username} vboxusers",
         "sudo modprobe vboxdrv",
         "sudo depmod -a",
