@@ -29,7 +29,7 @@ def run_new_file(b_dev=True,
         'EndSection',
     ]
 
-    with open("10-evdev.conf", "w+") as evdev:
+    with open("./files/10-evdev.conf", "w+") as evdev:
         for pas in new_evdev:
             evdev.write(f"{pas}\n")
 
@@ -237,7 +237,7 @@ def run_new_file(b_dev=True,
         "systemctl set-default graphical.target",
     ]
 
-    with open("scp.sh", "w+") as script:
+    with open("./files/scp.sh", "w+") as script:
         for pas in file:
             script.write(f"{pas}\n")
             script.write("sleep 1\n")

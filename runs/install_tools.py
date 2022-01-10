@@ -39,8 +39,8 @@ class Install:
     def pre_install(cls):
 
         run_os("clear")
-        get_output("rm -rf log.txt")
-        get_output("rm -rf info.txt")
+        get_output("rm -rf ./files/log.txt")
+        get_output("rm -rf ./files/info.txt")
         list_execs = {
             "Configurando MirrorList": "reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist",
             "Verificando Python": "pacman -Sy python3 --noconfirm",
@@ -54,12 +54,12 @@ class Install:
             "Configurando Relógio": "timedatectl set-ntp true",
         }
 
-        with open("log.txt", "a+") as logfile:
+        with open("./files/log.txt", "a+") as logfile:
 
             for info, command in list_execs.items():
                 print(info)
                 if info == "Verificando tipo de Inicialização":
-                    with open("info.txt", "a+") as file:
+                    with open("./files/info.txt", "a+") as file:
                         saida = get_output(command)
                         logfile.writelines(f"\n{saida}")
                         if saida.count("cannot access"):
@@ -74,7 +74,7 @@ class Install:
 
                 if info == "Testando Rede":
 
-                    with open("info.txt", "a+") as file:
+                    with open("./files/info.txt", "a+") as file:
                         saida = get_output(command).splitlines()
                         logfile.writelines(f"\n{saida}")
                         for ver in saida:
@@ -116,7 +116,7 @@ class Install:
             "Mount swap": f"swapon {disk}4",
         }
 
-        with open("log.txt", "a+") as filelog:
+        with open("./files/log.txt", "a+") as filelog:
             for key, vlr in mount_disk.items():
                 print(key)
                 time.sleep(1)
@@ -127,7 +127,7 @@ class Install:
 
     @staticmethod
     def install_system():
-        with open("log.txt", "r+") as file:
+        with open("./files/log.txt", "r+") as file:
             install_commands = {
                 "Install System": "pacstrap /mnt base base-devel linux linux-firmware",
                 "Gen fstab": "genfstab -U -p /mnt >> /mnt/etc/fstab",
@@ -135,13 +135,13 @@ class Install:
                 "Install Reflector": "pacstrap /mnt reflector",
                 "echo sleep #1": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
-                "Copy script": "cp scp.sh /mnt/etc",
-                "Copy arch-dark": "cp -rf Arch-Dark /mnt/etc",
-                "Copy lxdm": "cp lxdm.conf /mnt/etc",
-                "Copy Info": "cp info.txt /mnt/etc",
-                "Copy theme-grub": "cp -r Xenlism-Arch /mnt/etc",
-                "Copy Log": "cp log.txt /mnt/etc",
-                "Copy evdev": "cp 10-evdev.conf /mnt/etc",
+                "Copy script": "cp ./files/scp.sh /mnt/etc",
+                "Copy arch-dark": "cp -rf ./files/Arch-Dark /mnt/etc",
+                "Copy lxdm": "cp ./files/lxdm.conf /mnt/etc",
+                "Copy Info": "cp ./files/info.txt /mnt/etc",
+                "Copy theme-grub": "cp -r ./files/Xenlism-Arch /mnt/etc",
+                "Copy Log": "cp ./files/log.txt /mnt/etc",
+                "Copy evdev": "cp ./files/10-evdev.conf /mnt/etc",
                 "Enter System #1": "arch-chroot /mnt",
                 "Remove exit": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Edit Enter /etc": 'echo "cd /etc" >> /mnt/etc/bash.bashrc',
@@ -174,7 +174,7 @@ class Install:
         username = self.username
 
         temp_shadow = open("/mnt/etc/shadow", "r").readlines()
-        with open("shadow", "w+") as shadow:
+        with open("./files/shadow", "w+") as shadow:
             for pas in temp_shadow:
                 print(pas)
                 if pas.startswith("root:"):
@@ -190,7 +190,7 @@ class Install:
         shadow.close()
 
         temp_passwd = open("/mnt/etc/passwd", "r").readlines()
-        with open("passwd", "w+") as passwd:
+        with open("./files/passwd", "w+") as passwd:
             for pas in temp_passwd:
                 print(pas)
                 if pas.startswith("root:"):
@@ -206,7 +206,7 @@ class Install:
         passwd.close()
 
         temp_sudoers = open("/mnt/etc/sudoers", "r").readlines()
-        with open("sudoers", "w+") as sudoers:
+        with open("./files/sudoers", "w+") as sudoers:
             for pas in temp_sudoers:
                 print(pas)
                 if pas.startswith("root"):
@@ -224,14 +224,14 @@ class Install:
         time.sleep(1)
         run_os("rm -rf /mnt/etc/sudoers")
         time.sleep(1)
-        run_os("cp -f passwd /mnt/etc/")
+        run_os("cp -f ./files/passwd /mnt/etc/")
         time.sleep(1)
-        run_os("cp -f shadow /mnt/etc/")
+        run_os("cp -f ./files/shadow /mnt/etc/")
         time.sleep(1)
-        run_os("cp -f sudoers /mnt/etc/")
+        run_os("cp -f ./files/sudoers /mnt/etc/")
         time.sleep(1)
 
-        with open("log.txt", "a+") as file:
+        with open("./files/log.txt", "a+") as file:
             file.write(f"\nUsername: {str(username)}")
         file.close()
 

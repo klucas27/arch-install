@@ -15,12 +15,12 @@ def full_run():
     username = input("\nEnter your username: ")
 
     os.system("clear")
-    with open("log.txt", "a+") as file:
+    with open("./files/log.txt", "a+") as file:
         fdisk = subprocess.getoutput("fdisk -l")
         file.write(f"\n{fdisk}")
         for pas in fdisk.splitlines():
             if pas.startswith("Disk /dev/s"):
-                with open("info.txt", "a+") as file2:
+                with open("./files/info.txt", "a+") as file2:
                     file2.write(f"\n{pas}")
                     file.write(f"\n\t\t{pas}")
 
@@ -30,7 +30,7 @@ def full_run():
     r = re.compile(r"\D", re.ASCII)
     disks = {}
 
-    with open("info.txt", "r+") as file:
+    with open("./files/info.txt", "r+") as file:
         cont = 1
         for pas in file.readlines():
             if pas.startswith("Disk"):
