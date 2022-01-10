@@ -136,6 +136,8 @@ class Install:
                 "echo sleep #1": "echo \"sleep 2\" >> /mnt/etc/bash.bashrc",
                 "echo exit": "echo \"exit\" >> /mnt/etc/bash.bashrc",
                 "Copy script": "cp scp.sh /mnt/etc",
+                "Copy arch-dark": "cp -rf Arch-Dark /mnt/etc",
+                "Copy lxdm": "cp lxdm.conf /mnt/etc",
                 "Copy Info": "cp info.txt /mnt/etc",
                 "Copy theme-grub": "cp -r Xenlism-Arch /mnt/etc",
                 "Copy Log": "cp log.txt /mnt/etc",
@@ -155,6 +157,7 @@ class Install:
                 "Remove sleep": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove Script": "sed -i '$ d' /mnt/etc/bash.bashrc",
                 "Remove exit #2": "sed -i '$ d' /mnt/etc/bash.bashrc",
+                "Remove sleep #2": "sed -i '$ d' /mnt/etc/bash.bashrc",
             }
 
             for key, vlr in install_commands.items():
