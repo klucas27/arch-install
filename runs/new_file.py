@@ -46,6 +46,7 @@ def run_new_file(b_dev=True,
         "pacman -Sy reflector --noconfirm",
         "pacman -Sy sudo --noconfirm",
         "pacman -Syu python3 --noconfirm",
+        "pacman -Sy wget --noconfirm",
 
         # Configs Iniciais
         "echo 'Config Iniciais'",
@@ -66,7 +67,9 @@ def run_new_file(b_dev=True,
         f"echo '{lang} {coding}' >> /etc/locale.gen",
         "locale-gen",
         "sudo rm -rf /etc/X11/xorg.conf.d",
+        "sudo rm -rf /usr/share/X11/xorg.conf.d",
         "sudo cp -rf xorg.conf.d /etc/X11",
+        "sudo cp -rf xorg.conf.d /usr/share/X11",
 
 
         # Install Tools
@@ -125,6 +128,7 @@ def run_new_file(b_dev=True,
         "pacman -Sy gnome-calculator --noconfirm",
         "pacman -Sy libreoffice-fresh --noconfirm",
         "pacman -Sy libreoffice-fresh-pt-br --noconfirm",
+
 
         # Create User
         f"useradd -m {username}",
