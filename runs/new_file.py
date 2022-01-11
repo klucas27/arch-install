@@ -41,7 +41,6 @@ def run_new_file(b_dev=True,
         "",
 
         'echo "***Install Arch Linux in ROOT***"',
-        'sleep 5',
 
         # apps Necessaries started
         "pacman -Sy reflector --noconfirm",
