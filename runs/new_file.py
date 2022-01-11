@@ -20,12 +20,14 @@ def run_new_file(b_dev=True,
 
     new_evdev = [
         'Section "InputClass"',
-        '\tIdentifier "evdev keyboard catchall"',
+        '\tIdentifier "keyboard-all"',
         '\tMatchIsKeyboard "on"',
         '\tMatchDevicePath "/dev/input/event*"',
         '\tDriver "evdev"',
         f'\tOption "XkbLayout" "{layout}"',
         f'\tOption "XkbVariant" "{variant}"',
+        f'\tOption "XkbModel" "pc104"',
+        f'\tOption "XkbOptions" "terminate:ctrl_alt_bksp"',
         'EndSection',
     ]
 
@@ -47,6 +49,7 @@ def run_new_file(b_dev=True,
         "pacman -Sy sudo --noconfirm",
         "pacman -Syu python3 --noconfirm",
         "pacman -Sy wget --noconfirm",
+        "pacman -Sy xorg-xclock --noconfirm",
 
         # Configs Iniciais
         "echo 'Config Iniciais'",
@@ -61,8 +64,8 @@ def run_new_file(b_dev=True,
         "hwclock --systohc",
 
         # Config Locale teclado
-        f"echo 'LANG = {lang}' >> /etc/locale.conf",
-        f"echo 'KEYMAP = {layout}-{variant}' >> /etc/vconsole.conf",
+        f"echo 'LANG={lang}' >> /etc/locale.conf",
+        f"echo 'KEYMAP={layout}-{variant}' >> /etc/vconsole.conf",
         f"loadkeys {layout}-{variant}",
         f"echo '{lang} {coding}' >> /etc/locale.gen",
         "locale-gen",
@@ -117,6 +120,7 @@ def run_new_file(b_dev=True,
         "pacman -Sy mtools --noconfirm",
         "pacman -Sy dialog --noconfirm",
 
+
         # Startup
         "pacman -Sy os-prober --noconfirm",
         "pacman -Sy xorg-xinit --noconfirm",
@@ -139,6 +143,7 @@ def run_new_file(b_dev=True,
         "pacman -Sy code --noconfirm",
         "pacman -Sy pycharm-community-edition --noconfirm",
         "pacman -Sy konsole --noconfirm",
+        "pacman -Sy gnome-characters --noconfirm",
 
         # Install Vbox
         "sudo pacman -Sy virtualbox --noconfirm",
@@ -182,6 +187,14 @@ def run_new_file(b_dev=True,
     budgie_bib = [
         # install Budgie-desktop
         "pacman -Sy budgie-desktop --noconfirm",
+        "pacman -Sy dconf --noconfirm",
+        "pacman -Sy dconf-editor --noconfirm",
+        "pacman -Sy gnome-control-center --noconfirm",
+        "pacman -Sy budgie-screensaver --noconfirm",
+        "pacman -Sy gnome-calendar --noconfirm",
+        "pacman -Sy gnome-photos --noconfirm",
+        "pacman -Sy gnome-logs --noconfirm",
+        "pacman -Sy baobab --noconfirm",
 
         # xinit budgie
         "echo \"export XDG_CURRENT_DESKTOP=Budgie:GNOME\" > ~/.xinitrc",
