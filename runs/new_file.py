@@ -29,7 +29,7 @@ def run_new_file(b_dev=True,
         'EndSection',
     ]
 
-    with open("./files/10-evdev.conf", "w+") as evdev:
+    with open("./files/xorg.conf.d/10-evdev.conf", "w+") as evdev:
         for pas in new_evdev:
             evdev.write(f"{pas}\n")
 
@@ -66,7 +66,9 @@ def run_new_file(b_dev=True,
         f"loadkeys {layout}-{variant}",
         f"echo '{lang} {coding}' >> /etc/locale.gen",
         "locale-gen",
-        "sudo cp 10-evdev.conf /etc/X11/xorg.conf.d/",
+        "sudo rm -rf /etc/X11/xorg.conf.d",
+        "sudo cp -rf xorg.conf.d /etc/X11",
+
 
         # Install Tools
         "echo 'Install Tools:'",
