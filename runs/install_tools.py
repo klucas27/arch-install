@@ -176,7 +176,6 @@ class Install:
         temp_shadow = open("/mnt/etc/shadow", "r").readlines()
         with open("./files/shadow", "w+") as shadow:
             for pas in temp_shadow:
-                print(pas)
                 if pas.startswith("root:"):
                     pas_new = pas.replace(":!:", "::")
                     shadow.write(pas_new)
@@ -192,7 +191,6 @@ class Install:
         temp_passwd = open("/mnt/etc/passwd", "r").readlines()
         with open("./files/passwd", "w+") as passwd:
             for pas in temp_passwd:
-                print(pas)
                 if pas.startswith("root:"):
                     pas_new = pas.replace(":x:", "::")
                     passwd.write(pas_new)
@@ -208,7 +206,6 @@ class Install:
         temp_sudoers = open("/mnt/etc/sudoers", "r").readlines()
         with open("./files/sudoers", "w+") as sudoers:
             for pas in temp_sudoers:
-                print(pas)
                 if pas.startswith("root"):
                     sudoers.write(pas)
                     sudoers.write(f"{username} ALL=(ALL) ALL\n")

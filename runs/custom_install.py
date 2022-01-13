@@ -109,7 +109,10 @@ def full_run():
                     ],
 
     }
-    
+
+    size_root = input("Set size root (%): ")
+    size_home = input("Set size home (%): ")
+
     for key, val in options.items():
         while True:
             print(val[0])
@@ -142,7 +145,7 @@ def full_run():
     time.sleep(1)
 
     print("\nStart Partition Bios\n")
-    execs.partition_bios(55, 96)  # Partition Bios.
+    execs.partition_bios(size_root, size_home)  # Partition Bios.
     os.system("clear")
     time.sleep(1)
 
