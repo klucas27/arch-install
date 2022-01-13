@@ -67,7 +67,7 @@ def run_new_file(b_dev=True,
         f"echo 'LANG={lang}' >> /etc/locale.conf",
         f"echo 'KEYMAP={layout}-{variant}' >> /etc/vconsole.conf",
         f"loadkeys {layout}-{variant}",
-        f"echo '{lang} {coding}' >> /etc/locale.gen",
+        f"echo '{lang}.{coding} {coding}' >> /etc/locale.gen",
         "locale-gen",
         "sudo rm -rf /etc/X11/xorg.conf.d",
         "sudo rm -rf /usr/share/X11/xorg.conf.d",
@@ -285,7 +285,7 @@ def run_new_file(b_dev=True,
                 script.write(f"{pas}\n")
                 script.write("sleep 1\n")
 
-        if gui == "GNOME":
+        if gui == "gnome":
             for pas in gnome_bib:
                 script.write(f"{pas}\n")
                 script.write("sleep 1\n")
