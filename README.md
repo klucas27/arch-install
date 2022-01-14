@@ -1,4 +1,4 @@
-<img align="center" alt="css" src="/Arch_Start.png" />
+<img align="center" alt="arch" src="/Arch_Start.png" />
 <h4>Script para a instalação do Arch Linux</h4> 
 
 <div>
@@ -32,7 +32,24 @@
     <p>Faça boot com o sistema arch linux (sua ISO pode ser baixada no site oficial).</p>
     <h4> Passo 2: </h4>
     <p>Faça o download e a instalação do git:</p>
-    $ sudo pacman -Sy git
+    
+    $ pacman -Sy git --noconfirm
+
+<h4> Passo 3: </h4>
+    <p>Faça o download deste repositório:</p>
+    
+    # git clone https://github.com/klucas27/arch-install
+
+<h4> Passo 4: </h4>
+    <p>Entre dentro da pasta baixada(arch-install):</p>
+    
+    # cd arch-install
+
+<h4> Passo 5: </h4>
+    <p>Execute o script: </p>
+    
+    # python3 start.py
+
+<p>Deste modo começara o processo de instalação.</p>
 
 </div>
-$ sudo pacman -Sy git
