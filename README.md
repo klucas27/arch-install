@@ -35,3 +35,4 @@
     $ sudo pacman -Sy git
 
 </div>
+$ sudo pacman -Sy git
