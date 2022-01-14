@@ -1,4 +1,4 @@
-<img align="center" alt="arch" src="/Arch_Start.png" />
+<img align="center" alt="arch" src="\files\Arch_Start.png" />
 <h4>Script para a instalação do Arch Linux</h4> 
 
 <div>
