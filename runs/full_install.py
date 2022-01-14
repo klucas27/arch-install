@@ -60,7 +60,7 @@ def full_run():
                str("America/Sao_Paulo"),
                str("br"),
                str("abnt2"),
-               str("pt_BR.UTF-8"),
+               str("pt_BR"),
                str("UTF-8"),
 
                )
