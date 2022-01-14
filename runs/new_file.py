@@ -289,6 +289,7 @@ def run_new_file(b_dev=True,
             for pas in gnome_bib:
                 script.write(f"{pas}\n")
                 script.write("sleep 1\n")
+            display = "None"
 
         if gui == "lxqt":
             for pas in lxqt_bib:
